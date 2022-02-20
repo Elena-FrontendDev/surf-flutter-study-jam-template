@@ -1,8 +1,9 @@
+import 'package:equatable/equatable.dart';
 import 'package:surf_practice_chat_flutter/data/chat/models/geolocation.dart';
 import 'package:surf_practice_chat_flutter/data/chat/models/user.dart';
 
 /// Data transfer object representing simple chat message.
-class ChatMessageDto {
+class ChatMessageDto extends Equatable {
   /// Message author.
   final ChatUserDto author;
 
@@ -21,6 +22,9 @@ class ChatMessageDto {
   @override
   String toString() =>
       'ChatMessageDto(author: $author, message: $message, createdDate: $createdDateTime)';
+
+  @override
+  List<Object> get props => [author, message, createdDateTime];
 }
 
 /// Data transfer object representing geolocation chat message.
@@ -37,5 +41,6 @@ class ChatMessageGeolocationDto extends ChatMessageDto {
 
   @override
   String toString() =>
-      'ChatMessageGeolocationDto(location: $location) extends ${super.toString()}';
+      'ChatMessageGeolocationDto(location: $location) extends ${super
+          .toString()}';
 }

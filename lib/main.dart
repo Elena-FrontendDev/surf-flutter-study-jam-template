@@ -1,9 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:surf_practice_chat_flutter/data/chat/repository/firebase.dart';
 import 'package:surf_practice_chat_flutter/firebase_options.dart';
-import 'package:surf_practice_chat_flutter/screens/chat.dart';
+import 'package:surf_practice_chat_flutter/screens/chat/chat_page.dart';
+import 'package:surf_practice_chat_flutter/service/locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +14,8 @@ void main() async {
       webKey: 'AIzaSyD40PR_fizjSYtCZEtXgwq_5LdJu2w2zIs',
     ),
   );
-  
+  setupLocator();
+
   runApp(const MyApp());
 }
 
@@ -24,16 +24,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final chatRepository = ChatRepositoryFirebase(FirebaseFirestore.instance);
-
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorSchemeSeed: Colors.deepPurple,
         useMaterial3: true,
       ),
-      home: ChatScreen(
-        chatRepository: chatRepository,
-      ),
+      home: const ChatPage(),
     );
   }
 }
