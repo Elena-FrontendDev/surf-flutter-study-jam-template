@@ -55,6 +55,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
           child: TextField(
             controller: _textController,
             keyboardType: TextInputType.multiline,
+            minLines: 1,
             maxLines: 4,
             style: const TextStyle(color: Colors.deepPurple),
             cursorColor: Colors.deepPurple,
