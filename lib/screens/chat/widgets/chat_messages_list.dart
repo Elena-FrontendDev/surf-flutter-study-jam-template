@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:surf_practice_chat_flutter/data/chat/models/message.dart';
 import 'package:surf_practice_chat_flutter/data/chat/models/user.dart';
+import 'package:surf_practice_chat_flutter/screens/chat/widgets/chat_geo_location_message.dart';
 import 'package:surf_practice_chat_flutter/screens/chat/widgets/chat_message_item.dart';
 
 class ChatMessagesList extends StatelessWidget {
@@ -15,10 +16,17 @@ class ChatMessagesList extends StatelessWidget {
       itemCount: messages.length,
       itemBuilder: (context, index) {
         final item = messages[index];
-        return ChatMessageItem(
-          item,
-          item.author is ChatUserLocalDto,
-        );
+        if (item is ChatMessageGeolocationDto) {
+          return ChatGeoLocationMessage(
+            item,
+            item.author is ChatUserLocalDto,
+          );
+        } else {
+          return ChatMessageItem(
+            item,
+            item.author is ChatUserLocalDto,
+          );
+        }
       },
       separatorBuilder: (BuildContext context, int index) {
         return const SizedBox(height: 8);

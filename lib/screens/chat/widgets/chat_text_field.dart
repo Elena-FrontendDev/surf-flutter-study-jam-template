@@ -17,6 +17,40 @@ class _ChatTextFieldState extends State<ChatTextField> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
+        IconButton(
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (_) {
+                  return AlertDialog(
+                    title: const Text(
+                      'Отправить сообщение с геолокацией?',
+                    ),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: const Text(
+                          'Закрыть',
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          context.read<ChatCubit>().sendLocation();
+                          Navigator.pop(context);
+                        },
+                        child: const Text(
+                          'Отправить',
+                        ),
+                      )
+                    ],
+                  );
+                });
+          },
+          icon: const Icon(
+            Icons.share_location_outlined,
+            color: Colors.deepPurple,
+          ),
+        ),
         Expanded(
           child: TextField(
             controller: _textController,
