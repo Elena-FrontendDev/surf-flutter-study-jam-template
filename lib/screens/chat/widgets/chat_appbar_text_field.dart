@@ -23,7 +23,7 @@ class _ChatAppbarTextFieldState extends State<ChatAppbarTextField> {
         hintText: 'Введите ник',
         hintStyle: TextStyle(color: Colors.grey),
       ),
-      onSubmitted: (value) {
+      onChanged: (value) {
         if (value.trim().isNotEmpty) {
           context.read<ChatCubit>().submitName(value);
         }
