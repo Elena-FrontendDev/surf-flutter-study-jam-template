@@ -30,6 +30,8 @@ class ChatCubit extends Cubit<ChatState> {
   Future<void> sendMessage(String value) async {
     // TODO: add message error for empty user
     if (state.userName?.isEmpty ?? true) return;
-    _chatRepository.sendMessage(state.userName!, value);
+    _chatRepository.sendMessage(state.userName!, value).then((value) {
+      emit(state.copyWith(messages: value));
+    });
   }
 }
