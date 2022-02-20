@@ -3,13 +3,16 @@ import 'package:surf_practice_chat_flutter/data/chat/models/message.dart';
 
 class ChatMessageItem extends StatelessWidget {
   final ChatMessageDto message;
+  final bool isUserMessage;
 
-  const ChatMessageItem(this.message, {Key? key}) : super(key: key);
+  const ChatMessageItem(this.message, this.isUserMessage, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      color: isUserMessage ? Colors.deepPurple.shade50 : null,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

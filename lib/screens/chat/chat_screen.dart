@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:surf_practice_chat_flutter/cubit/chat/chat_cubit.dart';
-import 'package:surf_practice_chat_flutter/screens/chat/widgets/chat_message_item.dart';
+import 'package:surf_practice_chat_flutter/screens/chat/widgets/chat_messages_list.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
@@ -30,16 +30,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     behavior: const ScrollBehavior(
                         androidOverscrollIndicator:
                             AndroidOverscrollIndicator.stretch),
-                    child: ListView.separated(
-                      reverse: true,
-                      itemCount: state.messages!.length,
-                      itemBuilder: (context, index) {
-                        return ChatMessageItem(state.messages![index]);
-                      },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return const SizedBox(height: 24);
-                      },
-                    ),
+                    child: ChatMessagesList(state.messages!),
                   );
                 }
                 if (state.messagesStatus == ResponseStatus.loading) {
